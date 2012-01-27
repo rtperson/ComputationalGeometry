@@ -113,7 +113,25 @@ int main(int argc, char** argv) {
     cout << "direction of line (" <<  points[0].x << "," << points[0].y << ") and (" << points[2].x << "," << points[2].y
             << ") from line (" << points[0].x << "," << points[0].y
             << ") and (" << points[1].x << "," << points[1].y << ")\n";
-    cout << find_direction (points[0], points[1], points[2]);
+    cout << find_direction (points[0], points[1], points[2]) << "\n";
+    
+    cout << "testing intersection: (" <<  points[0].x << "," << points[0].y << ") and (" << points[1].x << "," << points[1].y
+            << ") to point (" << points[2].x << "," << points[2].y
+            << ") and (" << points[3].x << "," << points[3].y << ")\n";
+    if (segments_intersect(points[0], points[1], points[2], points[3])) {
+        cout << "They intersect!\n";
+    } else {
+        cout << "They do not intersect.\n";
+    }
+    
+    cout << "checking a T (for on_segment): (" <<  points[4].x << "," << points[4].y << ") and (" << points[5].x << "," << points[5].y
+            << ") to point (" << points[6].x << "," << points[6].y
+            << ") and (" << points[7].x << "," << points[7].y << ")\n";
+    if (segments_intersect(points[4], points[5], points[6], points[7])) {
+        cout << "They intersect!\n";
+    } else {
+        cout << "They do not intersect.\n";
+    }
 
     return 0;
 }
