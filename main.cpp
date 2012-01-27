@@ -24,22 +24,6 @@ public:
     int y;
 };
 
-int min(int n1, int n2) {
-    int min = n2;
-    if (n1 <= n2) {
-        min = n1;
-    }
-    return min;
-}
-
-int max(int n1, int n2) {
-    int max = n2;
-    if (n1 >= n2) {
-        max = n1;
-    }
-    return max;
-}
-
 
 int cross_product(point p1, point p2) {
     return (p1.x * p2.y) - (p2.x * p1.y);
