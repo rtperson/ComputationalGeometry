@@ -36,9 +36,13 @@ int find_direction (point p0, point p1, point p2) {
     return ((p1.x - p0.x) * (p2.y - p0.y)) - ((p2.x - p0.x) * (p1.y - p0.y));
 }
 
-
-// Determine if point p2 is on the line segment described by 
-// points p0 and p2
+/*
+ * Determine if point p2 is on the line segment described by
+ * points p0 and p2
+ * NOTE: this should properly be considered a coroutine of
+ * segments_intersect, as it has no meaning if the direction
+ *  test does not yield 0.
+ */
 bool on_segment(point p0, point p1, point p2) {
     bool ret = false;
     if ((min(p0.x, p1.x) <= p2.x) && (p2.x <= max(p0.x, p1.x))
@@ -91,15 +95,19 @@ int main(int argc, char** argv) {
     }
    
    
+    // TODO: create a cppunit test for these.
+    cout << "cross product of (" << points[0].x << "," << points[0].y 
+            << ") and (" << points[1].x << "," << points[1].y << "): " 
+            << cross_product(points[0], points[1]) << "\n";
    
-    cout << "cross product of (" << points[0].x << "," << points[0].y << ") and (" << points[1].x << "," << points[1].y << "): " << cross_product(points[0], points[1]) << "\n";
-   
-    cout << "direction of line (" <<  points[0].x << "," << points[0].y << ") and (" << points[2].x << "," << points[2].y
+    cout << "direction of line (" <<  points[0].x << "," << points[0].y 
+            << ") and (" << points[2].x << "," << points[2].y
             << ") from line (" << points[0].x << "," << points[0].y
             << ") and (" << points[1].x << "," << points[1].y << ")\n";
     cout << find_direction (points[0], points[1], points[2]) << "\n";
     
-    cout << "testing intersection: (" <<  points[0].x << "," << points[0].y << ") and (" << points[1].x << "," << points[1].y
+    cout << "testing intersection: (" <<  points[0].x << "," << points[0].y 
+            << ") and (" << points[1].x << "," << points[1].y
             << ") to point (" << points[2].x << "," << points[2].y
             << ") and (" << points[3].x << "," << points[3].y << ")\n";
     if (segments_intersect(points[0], points[1], points[2], points[3])) {
@@ -108,7 +116,8 @@ int main(int argc, char** argv) {
         cout << "They do not intersect.\n";
     }
     
-    cout << "checking a T (for on_segment): (" <<  points[4].x << "," << points[4].y << ") and (" << points[5].x << "," << points[5].y
+    cout << "checking a T (for on_segment): (" <<  points[4].x << "," << points[4].y 
+            << ") and (" << points[5].x << "," << points[5].y
             << ") to point (" << points[6].x << "," << points[6].y
             << ") and (" << points[7].x << "," << points[7].y << ")\n";
     if (segments_intersect(points[4], points[5], points[6], points[7])) {
